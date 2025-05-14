@@ -1,0 +1,35 @@
+{
+    "name": "Oreon Collection 1",
+    "description": "An NFT collection of Oreon the cat",
+    "image": "ipfs://QmRUsn4GCNV27AePabpPjwm3TeY6gANwFwcKkcVHieGamR/Oreon_Pixelat.png",
+    "attributes": [
+        {
+            "trait_type": "Fur Color",
+            "value": "Midnight Black"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Emerald Green"
+        },
+        {
+            "trait_type": "Mood",
+            "value": "Curious"
+        },
+        {
+            "trait_type": "Accessory",
+            "value": "Golden Bell Collar"
+        },
+        {
+            "trait_type": "Paw Pattern",
+            "value": "White Socks"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Starlit Alley"
+        },
+        {
+            "trait_type": "Rarity",
+            "value": "Epic"
+        }
+    ]
+}
