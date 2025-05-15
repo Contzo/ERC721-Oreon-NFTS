@@ -8,6 +8,8 @@ import {BasicNFT} from "../src/BasicNFT.sol";
 contract BasicNFTTest is Test {
     DeployBasicNFT deployer;
     BasicNFT basicNFT;
+    string oreonURI =
+        "ipfs://QmRUsn4GCNV27AePabpPjwm3TeY6gANwFwcKkcVHieGamR/oreon.json";
     address owner1 = makeAddr("owner1");
 
     function setUp() external {
@@ -16,7 +18,7 @@ contract BasicNFTTest is Test {
     }
 
     /**Name and symbol test */
-    function test_colectionName() external view {
+    function test_collectionName() external view {
         // Arrange / Action
         string memory expectedName = "Oreon";
         string memory collectionName = basicNFT.name();
@@ -33,5 +35,22 @@ contract BasicNFTTest is Test {
         string memory symbol = basicNFT.symbol();
         //Assert
         assertEq(symbol, expectedSymbol);
+    }
+
+    /*//////////////////////////////////////////////////////////////
+                              MINTING TEST
+    //////////////////////////////////////////////////////////////*/
+
+    function test_mintingAndHaveBalance() external {
+        //Arrange
+        vm.prank(owner1);
+        //Act
+        basicNFT.mintNFT(oreonURI);
+        //Assert
+        assert(basicNFT.balanceOf(owner1) == 1);
+        assert(
+            keccak256(abi.encodePacked(oreonURI)) ==
+                keccak256(abi.encodePacked(basicNFT.tokenURI(0)))
+        );
     }
 }
