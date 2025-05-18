@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 import {Script} from "forge-std/Script.sol";
-import {BasicNFT} from "../src/BasicNFT.sol";
-import {DevOpsTools} from "../lib/foundry-devops/src/DevOpsTools.sol";
+import {BasicNFT} from "../../src/BasicNFT.sol";
+import {DevOpsTools} from "../../lib/foundry-devops/src/DevOpsTools.sol";
 
 contract MintBasicNFT is Script {
     string public constant PUG_URI =

@@ -75,9 +75,10 @@ contract MoodNFT is ERC721 {
     }
 
     /**Public functions */
-    function mintNFT() public {
+    function mintNFT() public returns (uint256 mintedTokenId) {
         _safeMint(msg.sender, s_tokenCounter); // mint the token id (current counter) to the sender of this transaction
         s_tokenIdMood[s_tokenCounter] = Mood.HAPPY;
+        mintedTokenId = s_tokenCounter;
         s_tokenCounter++; // update counter for future use
     }
 
