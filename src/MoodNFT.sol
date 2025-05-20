@@ -110,7 +110,7 @@ contract MoodNFT is ERC721 {
     /**
      * @dev Allows the user of the `_tokenId` NFT to flip associated image
      */
-    function flipMood(uint256 _tokenId) public {
+    function flipMood(uint256 _tokenId) public returns (Mood) {
         if (_ownerOf(_tokenId) != msg.sender) {
             revert MoodNFT__CantFlipMoodIfNotOwner(); // check if the account that wants to flip the mood is the actual owner
         }
@@ -118,6 +118,7 @@ contract MoodNFT is ERC721 {
         s_tokenIdMood[_tokenId] = s_tokenIdMood[_tokenId] == Mood.HAPPY
             ? Mood.SAD
             : Mood.HAPPY;
+        return s_tokenIdMood[_tokenId];
     }
 
     /**View/Pure functions*/

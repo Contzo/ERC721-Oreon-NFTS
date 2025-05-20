@@ -30,3 +30,6 @@ deploy-anvil-MoodNFT:
 mint-anvil-MoodNFT:
 	@forge script script/MoodNFT/Interactions.s.sol:MintMoodNFT --rpc-url $(ANVIL_RPC_URL) --account defaultAnvilWallet --broadcast -vvvv
 
+TOKEN_ID ?= 0 
+flipNFTMood-anvil:
+	@forge script script/MoodNFT/Interactions.s.sol:FlipNFTMood --sig "run(uint256)" $(TOKEN_ID) --rpc-url $(ANVIL_RPC_URL) --account defaultAnvilWallet --broadcast -vvvv
