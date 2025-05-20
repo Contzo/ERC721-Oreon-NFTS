@@ -51,6 +51,7 @@ contract MoodNFT is ERC721 {
                              CUSTOM ERRORS
     //////////////////////////////////////////////////////////////*/
     error MoodNFT__InvalidTokenId(uint256 tokenId);
+    error MoodNFT__CantFlipMoodIfNotOwner();
 
     /*//////////////////////////////////////////////////////////////
                                MODIFIERS
@@ -82,11 +83,6 @@ contract MoodNFT is ERC721 {
         s_tokenCounter++; // update counter for future use
     }
 
-    /**View/Pure functions*/
-    function _baseURI() internal pure override returns (string memory) {
-        return "data:application/json;base64,";
-    }
-
     function tokenURI(
         uint256 _tokenId
     ) public view override returns (string memory) {
@@ -109,5 +105,23 @@ contract MoodNFT is ERC721 {
                     )
                 )
             );
+    }
+
+    /**
+     * @dev Allows the user of the `_tokenId` NFT to flip associated image
+     */
+    function flipMood(uint256 _tokenId) public {
+        if (_ownerOf(_tokenId) != msg.sender) {
+            revert MoodNFT__CantFlipMoodIfNotOwner(); // check if the account that wants to flip the mood is the actual owner
+        }
+        // flip the mood of the NFT
+        s_tokenIdMood[_tokenId] = s_tokenIdMood[_tokenId] == Mood.HAPPY
+            ? Mood.SAD
+            : Mood.HAPPY;
+    }
+
+    /**View/Pure functions*/
+    function _baseURI() internal pure override returns (string memory) {
+        return "data:application/json;base64,";
     }
 }
